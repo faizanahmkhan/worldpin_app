@@ -48,14 +48,15 @@ public class PinService {
 
 //    public void deletePin(long id) {pinRepository.deleteById(id);}
 
-    public Reply removePinById(Long id) {
+    public Reply removePinById(Long id, Pin pins) {
         Optional<Pin> pin = pinRepository.findById(id);
         if (pin.isEmpty()) {
             return new Reply(false, "Pin not found.");
         } else {
             pinRepository.delete(pin.get());
             return new Reply(true, "Pin successfully deleted.");
-//            Return List of Pins (forces a refresh?)
+            //            return pins;
+            //            Return List of Pins (forces a refresh?)
         }
     }
 
