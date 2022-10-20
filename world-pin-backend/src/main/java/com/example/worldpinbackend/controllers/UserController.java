@@ -42,19 +42,19 @@ public class UserController {
     @GetMapping (value = "/pins/{year}")
     public ResponseEntity<List<Pin>> getPinByYear(@PathVariable int year){
         List<Pin> pins = pinService.getPinByYear(year);
-        return new ResponseEntity<>(pins, HttpStatus.OK);
+        return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping (value = "/pins/{location}")
     public ResponseEntity<List<Pin>> getPinByLocation (@PathVariable String location){
         List<Pin> pins = pinService.getPinByLocation(location);
-        return new ResponseEntity<>(pins, HttpStatus.OK);
+        return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping (value = "/pins/{username}")
     public ResponseEntity<List<Pin>> getPinByUserName (@PathVariable String userName){
         List<Pin> pins = pinService.getPinByUserName(userName);
-        return new ResponseEntity<>(pins, HttpStatus.OK);
+        return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     // Post Request
