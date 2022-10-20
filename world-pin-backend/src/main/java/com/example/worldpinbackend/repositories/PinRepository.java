@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PinRepository extends JpaRepository<Pin, Long> {
 
-//List<Pin> findPinByYear(int year);
+List<Pin> findPinByYear(int year);
 }

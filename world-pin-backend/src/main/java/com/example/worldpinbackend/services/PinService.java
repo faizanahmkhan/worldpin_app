@@ -45,6 +45,7 @@ public class PinService {
         return pin;
     }
 
+
 //    public void deletePin(long id) {pinRepository.deleteById(id);}
 
     public Reply removePinById(Long id) {
@@ -54,6 +55,7 @@ public class PinService {
         } else {
             pinRepository.delete(pin.get());
             return new Reply(true, "Pin successfully deleted.");
+//            Return List of Pins (forces a refresh?)
         }
     }
 

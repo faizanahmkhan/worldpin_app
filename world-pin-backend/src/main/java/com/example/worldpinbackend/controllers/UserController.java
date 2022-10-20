@@ -41,9 +41,9 @@ public class UserController {
 
     // Post Request
     @PostMapping
-    public ResponseEntity<Pin> savePin(@RequestParam long user_id){
-        Pin pin = pinService.savePin(pin);
-        return new ResponseEntity<>(pin,HttpStatus.CREATED);
+    public ResponseEntity<Pin> savePin(@RequestBody Pin pinParam){
+        Pin savedPin = pinService.savePin(pinParam);
+        return new ResponseEntity<>(savedPin,HttpStatus.CREATED);
     }
 
 
