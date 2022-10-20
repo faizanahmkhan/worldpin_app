@@ -28,8 +28,8 @@ public class PinService {
 
 
 
-    public List<Pin> getPinByYear(int year){
-        return pinRepository.findPinByYear(year); // Might need to change " .get(); "?
+    public List<Pin> getPinByDate(Date date){
+        return pinRepository.findPinByDate(date); // Might need to change " .get(); "?
     }
 
     public List<Pin> getPinByLocation(String location){

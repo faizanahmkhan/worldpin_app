@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -39,9 +40,9 @@ public class UserController {
         return new ResponseEntity<>(pins, HttpStatus.OK);
     }
 
-    @GetMapping (value = "/pins/{year}")
-    public ResponseEntity<List<Pin>> getPinByYear(@PathVariable int year){
-        List<Pin> pins = pinService.getPinByYear(year);
+    @GetMapping (value = "/pins/{date}")
+    public ResponseEntity<List<Pin>> getPinByDate(@PathVariable Date date){
+        List<Pin> pins = pinService.getPinByDate(date);
         return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
@@ -51,9 +52,9 @@ public class UserController {
         return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping (value = "/pins/{username}")
-    public ResponseEntity<List<Pin>> getPinByUserName (@PathVariable String userName){
-        List<Pin> pins = pinService.getPinByUserName(userName);
+    @GetMapping (value = "/pins/{name}")
+    public ResponseEntity<List<Pin>> getPinByUserName (@PathVariable String name){
+        List<Pin> pins = pinService.getPinByUserName(name);
         return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
