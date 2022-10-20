@@ -39,12 +39,37 @@ public class UserController {
         return new ResponseEntity<>(pins, HttpStatus.OK);
     }
 
+    @GetMapping (value = "/pins/{year}")
+    public ResponseEntity<List<Pin>> getPinByYear(@PathVariable int year){
+        List<Pin> pins = pinService.getPinByYear(year);
+        return new ResponseEntity<>(pins, HttpStatus.OK);
+    }
+
+    @GetMapping (value = "/pins/{location}")
+    public ResponseEntity<List<Pin>> getPinByLocation (@PathVariable String location){
+        List<Pin> pins = pinService.getPinByLocation(location);
+        return new ResponseEntity<>(pins, HttpStatus.OK);
+    }
+
+    @GetMapping (value = "/pins/{username}")
+    public ResponseEntity<List<Pin>> getPinByUserName (@PathVariable String userName){
+        List<Pin> pins = pinService.getPinByUserName(userName);
+        return new ResponseEntity<>(pins, HttpStatus.OK);
+    }
+
     // Post Request
     @PostMapping
     public ResponseEntity<Pin> savePin(@RequestBody Pin pinParam){
         Pin savedPin = pinService.savePin(pinParam);
         return new ResponseEntity<>(savedPin,HttpStatus.CREATED);
     }
+
+    @DeleteMapping
+    public ResponseEntity<String>  removePinById(@RequestParam long id, Pin pin){
+        Reply deletedPin = pinService.removePinById(id, pin);
+        return deletedPin.isPassed() ? new ResponseEntity<>(deletedPin.getMessage(), HttpStatus.OK) : new ResponseEntity<>(deletedPin.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 
 
 

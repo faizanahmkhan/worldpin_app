@@ -28,16 +28,16 @@ public class PinService {
 
 
 
-    public Pin getPinByYear(int year){
-        return pinRepository.findByYear(year); // Might need to change " .get(); "?
+    public List<Pin> getPinByYear(int year){
+        return pinRepository.findPinByYear(year); // Might need to change " .get(); "?
     }
 
-    public Pin getPinByLocation(String location){
-        return pinRepository.findByLocation(location); // Might need to change " .get(); "?
+    public List<Pin> getPinByLocation(String location){
+        return pinRepository.findPinByLocation(location); // Might need to change " .get(); "?
     }
 
-    public Pin getPinByUserName(String userName){
-        return pinRepository.findByUserName(userName); // Might need to change " .get(); "?
+    public List<Pin> getPinByUserName(String userName){
+        return pinRepository.findPinByUserName(userName); // Might need to change " .get(); "?
     }
 
     public Pin savePin(Pin pin){
