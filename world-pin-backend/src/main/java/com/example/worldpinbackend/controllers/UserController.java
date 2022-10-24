@@ -70,7 +70,7 @@ public class UserController {
      }
 
     // Post Request
-    @PostMapping
+    @PostMapping (value = "/pins")
     public ResponseEntity<Pin> savePin(@RequestBody Pin pinParam){
         Pin savedPin = pinService.savePin(pinParam);
         return new ResponseEntity<>(savedPin,HttpStatus.CREATED);
