@@ -1,4 +1,5 @@
-import LogIn from "../components/LogIn"
+
+import LoginForm from "../components/LoginForm";
 import User from "../components/User"
 
 
@@ -7,7 +8,7 @@ const UserContainer = ({loggedInUser, onlineUser, users, postUser}) => {
     return(
         <>
         { onlineUser === undefined ?
-        <LogIn loggedInUser={loggedInUser} users={users} postUser={postUser}/> :
+        <LoginForm loggedInUser={loggedInUser} users={users} postUser={postUser}/> :
         <User user={onlineUser} loggedInUser={loggedInUser}/>
         }
         </>
