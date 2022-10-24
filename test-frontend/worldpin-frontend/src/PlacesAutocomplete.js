@@ -1,6 +1,7 @@
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
+
 
 import {
 	Combobox,
@@ -10,8 +11,10 @@ import {
 	ComboboxOption,
 	ComboboxOptionText,
 } from "@reach/combobox";
+import eachMinuteOfIntervalWithOptions from "date-fns/esm/fp/eachMinuteOfIntervalWithOptions/index.js";
 
-const PlacesAutocomplete = ({setSelected}) => {
+const PlacesAutocomplete = ({setSelected, mapRef}) => {
+
     const {
       ready,
       value,
@@ -20,6 +23,16 @@ const PlacesAutocomplete = ({setSelected}) => {
       clearSuggestions,
     } = usePlacesAutocomplete();
 
+    //Let's create our PanTo function, here, we will use our GeoCode LatLng results to pan to that location when clicked. Function is empty as definition will never be changed.
+
+    const panTo= useCallback(({lat,lng}) =>{
+      mapRef.current.panTo({lat,lng});
+    //setzoom//
+    },[]);
+
+
+    
+
 
     const handleSelect = async (address) => {
         setValue(address, false);
@@ -27,15 +40,17 @@ const PlacesAutocomplete = ({setSelected}) => {
 
         const results = await getGeocode({address});
         const {lat, lng} = await getLatLng(results[0]);
-        setSelected({lat, lng});
+        panTo({lat,lng});
+
+        console.log(lat,lng);
+        // setSelected({lat, lng});
+        // panTo({lat,lng});
 
     }
-
-
-
   
     return (
-    <Combobox onSelect={handleSelect}>
+    <Combobox onSelect={handleSelect} >
+      
   
       <ComboboxInput 
       value={value} 
@@ -54,11 +69,12 @@ const PlacesAutocomplete = ({setSelected}) => {
         </ComboboxList>
 
       </ComboboxPopover>
-  
+              
     </Combobox>
   
     )
   
 }
 
-export default PlacesAutocomplete
+
+export default PlacesAutocomplete;
