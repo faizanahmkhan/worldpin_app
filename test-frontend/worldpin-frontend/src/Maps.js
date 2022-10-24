@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import mapStyle from "./mapStyle";
+
+import {formatRelative} from "date-fns";
 
 import {
   GoogleMap,
@@ -35,35 +37,29 @@ const Maps = () => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const onMapClick = React.useCallback((e) => {
+  const onMapClick = useCallback((event) => {  //psuedo-code
     setMarkers((current) => [
       ...current,
       {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
         time: new Date(),
       },
     ]);
   }, []);
 
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
+  const mapRef = useRef();  //psuedo-code
+  const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
   
   
-  const [map, setMap] = React.useState(null);
+  const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
-  const [selected, setSelected] = React.useState(null);
+  const [selected, setSelected] = useState(null);
 
 
-  // const onLoad = React.useCallback(function callback(map) {
-  //   const bounds = new window.google.maps.LatLngBounds(center);
-  //   map.fitBounds(bounds);
-  //   setMap(map);
-  // }, []);
-
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
 
@@ -92,9 +88,8 @@ const Maps = () => {
             <Marker //we want to show a marker component that comes with our googlemaps package (this is the little red pin we see whenever we click somewhere on googlemaps)
               key={`${marker.lat}-${marker.lng}`} //as we're iterating, we add a key component so each clicked location is unique
               position={{ lat: marker.lat, lng: marker.lng }} //let's show our pin at the specified clicked location, based on it's lat and long
-              onClick={() => {
-                setSelected(marker);
-              }}
+              
+
               icon={{
                 //using icon we can override the original pin and add our own
                 url: `/icon.png`,
@@ -102,9 +97,33 @@ const Maps = () => {
                 anchor: new window.google.maps.Point(15, 15), //we set anchor half the size, so middle of our pin icon is exactly where they clicked
                 scaledSize: new window.google.maps.Size(30, 30), //set size of icon
               }}
+              onClick={() => {
+                  setSelected(marker);
+                }}
             />
           )
         )}
+
+            {selected ? (
+                      <InfoWindow
+                        position={{ lat: selected.lat, lng: selected.lng }}
+                        onCloseClick={() => {
+                          setSelected(null);
+                        }}
+                      >
+                        <div>
+                          <h2>
+                            <span role="img" aria-label="bear">
+                              🏖
+                            </span>{" "}
+                            Visited
+                          </h2>
+                          <p> Added Pin {formatRelative(selected.time, new Date())}</p>
+                        </div>
+                      </InfoWindow>
+                    ) : null}
+
+
       </GoogleMap>
     </div>
   ) : (
