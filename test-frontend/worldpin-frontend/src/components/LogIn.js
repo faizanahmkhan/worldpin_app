@@ -2,44 +2,39 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./LogIn.css"
 
-const LogIn = ({users,loggedInUser, postUser}) => {
+const LogIn = ({ users, loggedInUser, postUser }) => {
     const navigate = useNavigate()
-
     const [chosenUser, setChosenUser] = useState({
-        name:"",
-        favRecipes:[],
+        location: ""
     })
 
     const handleChange = event => {
         const userId = parseInt(event.target.value);
-        const selectedUser = users.find(user=> user.userId ===userId);
+        const selectedUser = users.find(user => user.userId === userId);
         setChosenUser(selectedUser)
     }
 
     const handleFormSubmit = event => {
         event.preventDefault();
         loggedInUser(chosenUser)
-
-       setChosenUser({
-        name:"",
-        favRecipes:[]
-       })
-
+        setChosenUser({
+            location: ""
+        })
         navigate("/account")
     }
 
-    const UserOptions = users? users.map((user)=>{
+    const UserOptions = users ? users.map((user) => {
         return <option key={user.userId} value={user.userId}>{user.name}</option>
     }) : []
 
-    const handleClick = () => {}
+    const handleClick = () => { }
 
     return (
         <div className="form-bg">
             <div className="form-container">
                 <h3>Log into your account</h3>
                 <form onSubmit={handleFormSubmit} className="user-log-in-form">
-                    <select 
+                    <select
                         name="user"
                         onChange={handleChange}
                         id="log-in-select"

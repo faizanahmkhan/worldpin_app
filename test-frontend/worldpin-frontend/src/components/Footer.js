@@ -6,8 +6,7 @@ const Footer = ({loggedInUser, postUser}) =>{
 
     const navigate = useNavigate()
     const [user, setUser] = useState({
-        name: "",
-        favRecipes: []
+        pin: "",
     })
 
     const handleChange = event => {
@@ -22,8 +21,7 @@ const Footer = ({loggedInUser, postUser}) =>{
         postUser(user)
         loggedInUser(user)
         setUser({
-            name:"",
-            favRecipes:[]
+            pin: "",
         })
         navigate("/account")
     }
