@@ -24,7 +24,7 @@ public class Pin {
     @Column (name = "image_id")
     private long image_id; //will need changing later
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties({"pins"})
     private User user;
