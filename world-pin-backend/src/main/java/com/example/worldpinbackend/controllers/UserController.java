@@ -65,15 +65,18 @@ public class UserController {
         return new ResponseEntity<>(savedPin,HttpStatus.CREATED);
     }
 
+    @PostMapping
+    public ResponseEntity<User> saveUser(@RequestBody User user){
+        User savedUser = userService.saveUser(user);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    }
+
+    //Delete Request
     @DeleteMapping
     public ResponseEntity<String>  removePinById(@RequestParam long id, Pin pin){
         Reply deletedPin = pinService.removePinById(id, pin);
         return deletedPin.isPassed() ? new ResponseEntity<>(deletedPin.getMessage(), HttpStatus.OK) : new ResponseEntity<>(deletedPin.getMessage(), HttpStatus.NOT_FOUND);
     }
-
-
-
-
 
 
 }

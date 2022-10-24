@@ -29,10 +29,10 @@ public class UserService {
     }
 
 
-//    public User saveUser(User user) {
-//        userRepository.save(user);
-//        return user;
-//    }
+    public User saveUser(User user) {
+        userRepository.save(user);
+        return user;
+    }
 
 //    May not be Necessary
 
