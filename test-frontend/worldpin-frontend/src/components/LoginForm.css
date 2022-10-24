@@ -8,3 +8,12 @@
     transform: translateY(100px) scale(0) rotateY(180deg);
     opacity: 1;
 }
+
+.login-text {
+    color: rgb(207, 9, 9);
+}
+
+.login-box {
+    color: rgb(249, 249, 249);
+
+}

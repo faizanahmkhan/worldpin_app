@@ -3,6 +3,9 @@ import './App.css';
 import React from 'react';
 import LoginForm from './components/LoginForm';
 import NavBar from './components/NavBar';
+import Maps from './Maps';
+
+
 function App() {
 
     const [isLogin, setIsLogin] = useState(false);
@@ -16,7 +19,7 @@ function App() {
 <>
 <NavBar handleLoginClick={handleLoginClick}/>
 <LoginForm isLogin={isLogin} />
-
+<Maps></Maps>
 </>
 
 )
