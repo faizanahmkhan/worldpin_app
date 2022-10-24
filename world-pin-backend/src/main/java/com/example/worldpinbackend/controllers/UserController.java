@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping( value = "/users")
@@ -57,6 +58,16 @@ public class UserController {
         List<Pin> pins = pinService.getPinByUserName(name);
         return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
+
+     @GetMapping(value = "/{id}")
+     public ResponseEntity<User> getUserById (@PathVariable Long id){
+         Optional<User> user = userService.getUserById(id);
+         if (user.isPresent()){
+             return new ResponseEntity<>(user.get(),HttpStatus.OK);
+         } else {
+             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+         }
+     }
 
     // Post Request
     @PostMapping
