@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import mapStyle from "./mapStyle";
 
+import PlacesAutoComplete from "./Places"
+
 import {formatRelative} from "date-fns";
+
 
 import {
   GoogleMap,
@@ -11,7 +14,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-const libraries = ["places"]; //when react rerenders, it does a div to see if it needs to rerender. When arrays and objects are used as literals, react looks to axt as if theyre diff objects, even though they have the same details within it (especially the google maps api), and rerenders in a weird way and avoid too many rerenders
+// const libraries = ["places"]; //when react rerenders, it does a div to see if it needs to rerender. When arrays and objects are used as literals, react looks to axt as if theyre diff objects, even though they have the same details within it (especially the google maps api), and rerenders in a weird way and avoid too many rerenders
 
 const containerStyle = {
   //same as above,to avoid rerenders  we create this variable outside the GoogleMap function
@@ -35,6 +38,7 @@ const Maps = () => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
   });
 
   const onMapClick = useCallback((event) => {  //psuedo-code
@@ -65,6 +69,9 @@ const Maps = () => {
 
   return isLoaded ? (
     <div>
+      <div className="places-container">
+        <PlacesAutoComplete setSelected = {setSelected}/>
+      </div>
       <h1>
         World Pin
         <span role="img" aria-label="tent">
@@ -130,5 +137,7 @@ const Maps = () => {
     <></>
   );
 };
+
+
 
 export default Maps;
