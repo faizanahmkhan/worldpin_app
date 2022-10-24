@@ -69,10 +69,11 @@ public class UserController {
          }
      }
 
-    // Post Request
-    @PostMapping (value = "/pins")
+    // Post Requests
+    @PostMapping (value = "/pin")
     public ResponseEntity<Pin> savePin(@RequestBody Pin pinParam){
         Pin savedPin = pinService.savePin(pinParam);
+
         return new ResponseEntity<>(savedPin,HttpStatus.CREATED);
     }
 
@@ -80,6 +81,12 @@ public class UserController {
     public ResponseEntity<User> saveUser(@RequestBody User user){
         User savedUser = userService.saveUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    }
+
+    @PostMapping (value = "/{userId}/{pinId}")
+    public ResponseEntity<User> addPinToUser(@PathVariable long userId, long pinId ){
+        Optional<User> user = userService.addPinToUser(userId, pinId);
+        return user.isPresent() ? new ResponseEntity<>(user.get(), HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     //Delete Request
