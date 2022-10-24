@@ -69,7 +69,7 @@ const Maps = () => {
 
   return isLoaded ? (
     <div>
-      <div className="places-container">
+      <div>
         <PlacesAutoComplete setSelected = {setSelected} mapRef= {mapRef}
         />
       </div>

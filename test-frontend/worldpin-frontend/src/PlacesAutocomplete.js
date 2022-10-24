@@ -2,6 +2,8 @@
 import { useState, useCallback } from "react";
 import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
 
+import Locate from "./Locate";
+
 
 import {
 	Combobox,
@@ -44,14 +46,19 @@ const PlacesAutocomplete = ({setSelected, mapRef}) => {
 
         console.log(lat,lng);
         // setSelected({lat, lng});
-        // panTo({lat,lng});
-
-    }
+      }
   
-    return (
-    <Combobox onSelect={handleSelect} >
       
-  
+
+
+
+    return (
+      <>
+      <div className="locate">
+      <Locate panTo={panTo}></Locate>
+      </div>
+      <div className="places-container">
+    <Combobox onSelect={handleSelect} >
       <ComboboxInput 
       value={value} 
       onChange= {(event) => setValue(event.target.value)}
@@ -61,17 +68,19 @@ const PlacesAutocomplete = ({setSelected, mapRef}) => {
       />
       
       <ComboboxPopover>
+      <div className="sugglist">
         <ComboboxList>
         {status === "OK" &&
             data.map(({ place_id, description }) => (
               <ComboboxOption key={place_id} value={description} />
             ))}
         </ComboboxList>
-
-      </ComboboxPopover>
-              
+        </div>
+      </ComboboxPopover>        
     </Combobox>
-  
+    
+  </div>
+  </>
     )
   
 }

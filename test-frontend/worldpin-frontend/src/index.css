@@ -31,11 +31,37 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  width: 300px
+  width: 400px;
+  max-width: 400px;
 }
 
 .combobox-input {
   width: 100%;
   padding: 0.5rem;
+  font-size: 1.75 rem;
 }
+
+.sugglist{
+  list-style: none;
+  background-color: lightblue;
+}
+
+.locate {
+  position: absolute;
+  top: 1rem;
+  right: 10rem;
+  background: none;
+  border: none;
+  z-index: 10;
+  width: 100px;
+  height: 100px;
+ 
+}
+.locate img {
+  width: 60px;
+  cursor: pointer;
+ 
+}
+
+
 
