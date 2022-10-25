@@ -39,17 +39,22 @@ function App() {
   }, [])
 
   const [isLogin, setIsLogin] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
 
   const handleLoginClick = () => {
     setIsLogin((isLogin) => !isLogin)
+  }
+
+  const handleRegisterClick = () => {
+    setIsRegister((isRegister) => !isRegister)
   }
 
 
   return (
 
     <BrowserRouter>
-      <NavBar handleLoginClick={handleLoginClick} />
-      <LoginForm isLogin={isLogin} />
+      <NavBar handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
+      <LoginForm isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser}/>
       <Maps></Maps>
       <Routes>
         <Route path='/account' element={<UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} />} />

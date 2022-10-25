@@ -3,14 +3,14 @@ import LoginForm from "../components/LoginForm";
 import User from "../components/User"
 
 
-const UserContainer = ({loggedInUser, onlineUser, users, postUser}) => {
+const UserContainer = ({ loggedInUser, onlineUser, users, postUser }) => {
 
-    return(
+    return (
         <>
-        { onlineUser === undefined ?
-        <LoginForm loggedInUser={loggedInUser} users={users} postUser={postUser}/> :
-        <User user={onlineUser} loggedInUser={loggedInUser}/>
-        }
+            {onlineUser === undefined ?
+                <LoginForm loggedInUser={loggedInUser} users={users} postUser={postUser} /> :
+                <User user={onlineUser} loggedInUser={loggedInUser} />
+            }
         </>
     )
 }

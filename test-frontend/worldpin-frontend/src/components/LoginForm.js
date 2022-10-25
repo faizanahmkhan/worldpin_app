@@ -3,29 +3,60 @@ import './LoginForm.css';
 import './User.js';
 import { useState } from "react";
 
-const LoginForm = ({ isLogin, users, loggedInUser, postUser }) => {
+const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
 
     const [chosenUser, setChosenUser] = useState({
-        location: ""
+        name:"",
+        pins: []
     })
 
-    const handleChange = event => {
-        const userId = parseInt(event.target.value);
-        const selectedUser = users.find(user => user.userId === userId);
-        setChosenUser(selectedUser)
-    }
+    const [clicked, setClicked] = useState(false)
+    const [newUser, setNewUser] = useState({
+        name: "",
+        pins: []
+    })
+
 
     const handleFormSubmit = event => {
         event.preventDefault();
         loggedInUser(chosenUser);
         setChosenUser({
-            location: ""
+            name: "",
+            pins: []
         })
+        console.log(chosenUser);
     }
 
-    const UserOptions = users ? users.map((user) => {
-        return <option key={user.userId} value={user.userId}>{user.name}</option>
-    }) : []
+    const handleRegisterChange = event => {
+        const propertyName = event.target.name
+        const savedUser = {...newUser}
+        savedUser[propertyName] = event.target.value
+        setNewUser(savedUser)
+        console.log(savedUser);
+    }
+
+    const handleRegisterSubmit = event => {
+        event.preventDefault();
+        postUser(newUser)
+        setNewUser({
+            name:"",
+            pins: []
+        })
+       console.log(newUser);
+    }
+   
+    const handleRegisterClick = () => {
+        setClicked(true)
+        
+    }
+
+    const handleLogInClick = () => {
+        setClicked(false)
+    }
+
+    // const UserOptions = users ? users.map((user) => {
+    //     return <option key={user.userId} value={user.userId}>{user.name}</option>
+    // }) : []
 
     const handleClick = () => { }
 
@@ -42,7 +73,7 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser }) => {
                                 <input
                                     className="login-box"
                                     type="text"
-                                    name="username"
+                                    name="name"
                                 />
                                 <br></br>
                                 <input type="submit" value="LOGIN" className="login-btn" />
@@ -52,6 +83,26 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser }) => {
                 </div>
             </div>
 
+            <div className="overlay">
+                <div className={`${!isRegister ? "active" : ""} show `}>
+                    <div className="login-form">
+                        <div className="form-box solid">
+                            <form onSubmit={handleRegisterSubmit}>
+                                <h2 className="login-text">Register</h2>
+                                <label>Username</label>
+                                <br></br>
+                                <input
+                                    className="login-box"
+                                    type="text"
+                                    name="name"
+                                />
+                                <br></br>
+                                <input onChange={handleRegisterChange} type="submit" value="REGISTER" className="login-btn" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </>
     )

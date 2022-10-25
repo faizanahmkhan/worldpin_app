@@ -25,8 +25,30 @@
     cursor: pointer;
     z-index: 1; 
   }
+
+  .register-icon {
+    position: absolute;
+    width: 80px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    color: black;
+    height: 40px;
+    left: 92%;
+    top: 10px;
+    background:#2b67ff;
+    border-radius: 24px;
+    cursor: pointer;
+    z-index: 1; 
+  }
   
   .login-icon:hover{
+    color: white;
+  }
+
+  .register-icon:hover{
     color: white;
   }
   
