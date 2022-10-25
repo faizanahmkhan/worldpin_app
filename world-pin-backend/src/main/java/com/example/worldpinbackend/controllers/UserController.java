@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping( value = "/users")
@@ -58,22 +59,42 @@ public class UserController {
         return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    // Post Request
-    @PostMapping
+     @GetMapping(value = "/{id}")
+     public ResponseEntity<User> getUserById (@PathVariable Long id){
+         Optional<User> user = userService.getUserById(id);
+         if (user.isPresent()){
+             return new ResponseEntity<>(user.get(),HttpStatus.OK);
+         } else {
+             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+         }
+     }
+
+    // Post Requests
+    @PostMapping (value = "/pin")
     public ResponseEntity<Pin> savePin(@RequestBody Pin pinParam){
         Pin savedPin = pinService.savePin(pinParam);
+
         return new ResponseEntity<>(savedPin,HttpStatus.CREATED);
     }
 
+    @PostMapping
+    public ResponseEntity<User> saveUser(@RequestBody User user){
+        User savedUser = userService.saveUser(user);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    }
+
+    @PostMapping (value = "/{userId}/{pinId}")
+    public ResponseEntity<User> addPinToUser(@PathVariable long userId, long pinId ){
+        Optional<User> user = userService.addPinToUser(userId, pinId);
+        return user.isPresent() ? new ResponseEntity<>(user.get(), HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    //Delete Request
     @DeleteMapping
     public ResponseEntity<String>  removePinById(@RequestParam long id, Pin pin){
         Reply deletedPin = pinService.removePinById(id, pin);
         return deletedPin.isPassed() ? new ResponseEntity<>(deletedPin.getMessage(), HttpStatus.OK) : new ResponseEntity<>(deletedPin.getMessage(), HttpStatus.NOT_FOUND);
     }
-
-
-
-
 
 
 }

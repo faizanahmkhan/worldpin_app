@@ -29,11 +29,25 @@ public class UserService {
     }
 
 
-//    public User saveUser(User user) {
-//        userRepository.save(user);
-//        return user;
-//    }
+    public User saveUser(User user) {
+        userRepository.save(user);
+        return user;
+    }
 
-//    May not be Necessary
+    public Optional<User> addPinToUser(long userId, long pinId){
+        Optional<User> user = userRepository.findById(userId);
+        Optional<Pin> pin = pinRepository.findById(pinId);
+
+        if (user.isEmpty() || pin.isEmpty()) {
+            return null;
+        } else {
+            user.get().getPins().add(pin.get());
+            userRepository.save(user.get());
+            return user;
+        }
+
+    }
+
+
 
 }
