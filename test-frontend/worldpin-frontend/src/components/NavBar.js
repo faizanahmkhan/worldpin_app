@@ -4,12 +4,16 @@ import './NavBar.css';
 function NavBar ( {handleLoginClick, handleRegisterClick}) {
 
     const handleClick = () => {
-        handleLoginClick()
-    }
+        handleLoginClick();
+    };
 
     const handlePress = () => {
         handleRegisterClick()
-    }
+    };
+
+    
+    
+
 
     return (
         <div>
