@@ -53,7 +53,7 @@ function App() {
   return (
 
     <BrowserRouter>
-      <NavBar handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
+      <NavBar loggedInUser={loggedInUser} postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
       <LoginForm isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser}/>
       <Maps></Maps>
       <Routes>

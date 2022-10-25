@@ -1,8 +1,11 @@
 import { useState } from "react";
+import 'react-datepicker/dist/react-datepicker.css'
 
 const InfoForm = ({}) => {
 
-const [pinSet, isPinSet] =useState(false);
+//   const [value, onChange] = useState(new Date());
+
+  const [pinSet, isPinSet] =useState(false);
 
 return (
     <>
@@ -12,14 +15,27 @@ return (
                     <div className="form-box solid">
                         <form>
                             <h2 className="login-text">Pin Form</h2>
-                            <label>Fill in Pin</label>
+                            <br></br>
+                            <label>Add Image</label>
+                            <br></br>
+                            <input
+                                className="login-box"
+                                type="file" id="myFile" name="filename"
+                            
+                            />
+                            <label>Pin Description</label>
                             <br></br>
                             <input
                                 className="login-box"
                                 type="text"
                                 name="name"
                             />
+                            <label>Date</label>
                             <br></br>
+                            <input type="date" id="start" name="trip-start"
+                            value="2022-10-10"
+                            min="1990-01-01" max="2030-01-01"
+                            />
                             <input type="submit" value="Add Pin" className="login-btn" />
                         </form>
                     </div>
