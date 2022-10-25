@@ -29,6 +29,7 @@ const PlacesAutocomplete = ({setSelected, mapRef}) => {
 
     const panTo= useCallback(({lat,lng}) =>{
       mapRef.current.panTo({lat,lng});
+      mapRef.current.setZoom(16);
     //setzoom//
     },[]);
 
@@ -59,6 +60,7 @@ const PlacesAutocomplete = ({setSelected, mapRef}) => {
       </div>
       <div className="places-container">
     <Combobox onSelect={handleSelect} >
+      <div className="placesInput">
       <ComboboxInput 
       value={value} 
       onChange= {(event) => setValue(event.target.value)}
@@ -66,6 +68,7 @@ const PlacesAutocomplete = ({setSelected, mapRef}) => {
       className="combobox-input"
       placeholder="Search a location"
       />
+      </div>
       
       <ComboboxPopover>
       <div className="sugglist">

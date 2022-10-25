@@ -32,6 +32,8 @@ const options = {
   styles: mapStyle,
   disableDefaultUI: true, // removes default google maps functionality
   zoomControl: true,
+  minZoom: 3.5,
+ maxZoom: 20,
 };
 
 const Maps = () => {
