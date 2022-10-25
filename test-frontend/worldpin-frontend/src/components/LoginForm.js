@@ -6,7 +6,7 @@ import { useState } from "react";
 const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
 
     const [chosenUser, setChosenUser] = useState({
-        name:"",
+        name: "",
         pins: []
     })
 
@@ -54,9 +54,6 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
         setClicked(false)
     }
 
-    // const UserOptions = users ? users.map((user) => {
-    //     return <option key={user.userId} value={user.userId}>{user.name}</option>
-    // }) : []
 
     const handleClick = () => { }
 
