@@ -41,7 +41,7 @@ public class User {
     }
 
     public void setName(String userName) {
-        this.name = name;
+        this.name = userName;
     }
 
     public List<Pin> getPins() {

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import mapStyle from "./mapStyle";
 
 import PlacesAutoComplete from "./PlacesAutocomplete"
-
+import InfoForm from "./components/InfoForm";
 import {formatRelative} from "date-fns";
 
 
@@ -32,8 +32,15 @@ const options = {
   styles: mapStyle,
   disableDefaultUI: true, // removes default google maps functionality
   zoomControl: true,
-  minZoom: 3.5,
- maxZoom: 20,
+  minZoom: 4,
+  maxZoom: 20,
+  restriction: {
+    latLngBounds: {
+        north: 85,
+        south: -85,
+        west: -180,
+        east: 180
+    }}
 };
 
 const Maps = () => {
@@ -50,6 +57,7 @@ const Maps = () => {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
         time: new Date(),
+
       },
     ]);
   }, []);
@@ -95,6 +103,7 @@ const Maps = () => {
           (
             marker //we already have our useState,when we click a location in the map, we can see the lat and long generated in the console; but we need this markers.map method to create pins in these locations
           ) => (
+            <>
             <Marker //we want to show a marker component that comes with our googlemaps package (this is the little red pin we see whenever we click somewhere on googlemaps)
               key={`${marker.lat}-${marker.lng}`} //as we're iterating, we add a key component so each clicked location is unique
               position={{ lat: marker.lat, lng: marker.lng }} //let's show our pin at the specified clicked location, based on it's lat and long
@@ -111,6 +120,8 @@ const Maps = () => {
                   setSelected(marker);
                 }}
             />
+            <InfoForm/>
+            </>
           )
         )}
 
@@ -123,7 +134,7 @@ const Maps = () => {
                       >
                         <div>
                           <h2>
-                            <span role="img" aria-label="bear">
+                            <span role="img" aria-label="island">
                               🏖
                             </span>{" "}
                             Visited
