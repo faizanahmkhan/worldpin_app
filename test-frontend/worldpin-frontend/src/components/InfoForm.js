@@ -1,16 +1,16 @@
 import { useState } from "react";
 import 'react-datepicker/dist/react-datepicker.css'
 
-const InfoForm = ({}) => {
+const InfoForm = ({postPin, addPinToUser, isPinPopped}) => {
 
 //   const [value, onChange] = useState(new Date());
 
-  const [pinSet, isPinSet] =useState(false);
+  
 
 return (
     <>
         <div className="overlay">
-            <div className={`${!isPinSet ? "active" : ""} show `}>
+            <div className={`${!isPinPopped ? "active" : ""} show `}>
                 <div className="login-form">
                     <div className="form-box solid">
                         <form>

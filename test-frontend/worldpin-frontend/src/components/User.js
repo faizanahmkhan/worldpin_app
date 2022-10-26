@@ -8,7 +8,7 @@ const User = ({user, loggedInUser}) => {
             pins: []
         })
         console.log(loggedInUser);
-        window.location.reload()
+        window.location.reload() 
     }
     
     return (

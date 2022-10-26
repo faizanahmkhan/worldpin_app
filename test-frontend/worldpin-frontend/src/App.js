@@ -13,6 +13,9 @@ function App() {
   const [users, setUsers] = useState([]);
   const [pins, setPins] = useState([]);
   const [onlineUser, setOnlineUser] = useState();
+  const [userPins, setUserPins] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
 
   const loggedInUser = chosenUser => {
     if (chosenUser.name === "") setOnlineUser()
@@ -51,12 +54,13 @@ function App() {
     setPins([...pins, savedPin])
   }
 
-  const addPinToUser = async (newPin) => {
+  const addPinToUser = async (userId, pinId) => {
     const response = await fetch (`http://localhost:80080/${userId}/${pinId}`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
     })
-
+    const updatedPins = await response.json();
+    setUserPins([...updatedPins.pins])
   }
 
   
@@ -65,8 +69,7 @@ function App() {
     fetchPins()
   }, [])
 
-  const [isLogin, setIsLogin] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
+ 
 
   const handleLoginClick = () => {
     setIsLogin((isLogin) => !isLogin)
@@ -84,7 +87,7 @@ function App() {
       <LoginForm isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser}/>
       <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser}></Maps>
       <Routes>
-        <Route path='/account' element={<UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} />} />
+        <Route path='/account' element={<UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins}/>} />
       </Routes>
     </BrowserRouter>
 

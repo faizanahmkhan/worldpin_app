@@ -61,6 +61,7 @@ const Maps = ({pins, users, postPin, addPinToUser}) => {
 
       },
     ]);
+    setIsPinPopped((isPinPopped) => !isPinPopped)
   }, []);
 
   const mapRef = useRef();  //psuedo-code
@@ -72,6 +73,7 @@ const Maps = ({pins, users, postPin, addPinToUser}) => {
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [isPinPopped, setIsPinPopped] =useState(false);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -120,7 +122,7 @@ const Maps = ({pins, users, postPin, addPinToUser}) => {
                   setSelected(marker);
                 }}
             />
-            <InfoForm postPin={postPin} />
+            <InfoForm postPin={postPin} addPinToUser={addPinToUser} isPinPopped={isPinPopped}/>
             </>
           )
         )}
