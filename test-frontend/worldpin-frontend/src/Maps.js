@@ -44,7 +44,7 @@ const options = {
     }}
 };
 
-const Maps = () => {
+const Maps = ({pins, users, postPin, addPinToUser}) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -72,25 +72,6 @@ const Maps = () => {
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
-
-  const postPin = async (newPin) => {
-    const response = await fetch("http://localhost:8080/users/pin", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newPin)
-    })
-    const savedPin = await response.json()
-    setMarkers([...markers, savedPin])
-  }
-
-  const addPinToUser = async (newPin) => {
-    const response = await fetch (`http://localhost:80080/${userId}/${pinId}`, {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-    })
-    
-  }
-
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);

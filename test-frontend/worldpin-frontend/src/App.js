@@ -41,9 +41,28 @@ function App() {
     setUsers([...users, savedUser])
   };
 
+  const postPin = async (newPin) => {
+    const response = await fetch("http://localhost:8080/users/pin", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newPin)
+    })
+    const savedPin = await response.json()
+    setPins([...pins, savedPin])
+  }
+
+  const addPinToUser = async (newPin) => {
+    const response = await fetch (`http://localhost:80080/${userId}/${pinId}`, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+  }
+
   
   useEffect(() => {
     fetchUsers()
+    fetchPins()
   }, [])
 
   const [isLogin, setIsLogin] = useState(false);
@@ -63,7 +82,7 @@ function App() {
     <BrowserRouter>
       <NavBar loggedInUser={loggedInUser} postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
       <LoginForm isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser}/>
-      <Maps></Maps>
+      <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser}></Maps>
       <Routes>
         <Route path='/account' element={<UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} />} />
       </Routes>
