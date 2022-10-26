@@ -1,4 +1,4 @@
-import './App.css';
+import './App.css'; 
 import React from 'react';
 import LoginForm from './components/LoginForm';
 import NavBar from './components/NavBar';
@@ -17,7 +17,9 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
 
- 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
 
   const fetchUsers = async () => {
     const response = await fetch("http://localhost:8080/users");
@@ -31,13 +33,13 @@ function App() {
     setPins(pinData)
   };
 
-  const loggedInUser = async ({name}) => {
+  const loggedInUser = async ({ name }) => {
     const response = await fetch(`http://localhost:8080/users/${name}`)
     const selectedUser = await response.json()
     setOnlineUser(selectedUser[0])
-    
+
   };
-  
+
   const postUser = async newUser => {
     const response = await fetch("http://localhost:8080/users", {
       method: "POST",
@@ -59,7 +61,7 @@ function App() {
   }
 
   const addPinToUser = async (userId, pinId) => {
-    const response = await fetch (`http://localhost:80080/${userId}/${pinId}`, {
+    const response = await fetch(`http://localhost:80080/${userId}/${pinId}`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
     })
@@ -67,32 +69,47 @@ function App() {
     setUserPins([...updatedPins.pins])
   }
 
-  
+
   useEffect(() => {
     fetchUsers()
     fetchPins()
   }, [])
 
- 
+
 
   const handleLoginClick = () => {
     setIsLogin((isLogin) => !isLogin)
+    localStorage.setItem('user','id');
   }
 
   const handleRegisterClick = () => {
     setIsRegister((isRegister) => !isRegister)
   }
 
-
+  useEffect(() => {
+    checkStorage();
+    return () => { };
+  }, [isLoggedIn]);
+  function checkStorage() {
+    if (localStorage.getItem('user')) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }
+  const logout = () => {
+    localStorage.removeItem('user');
+    setIsLoggedIn(false);
+  };
   return (
 
     <BrowserRouter>
-      <NavBar loggedInUser={loggedInUser} postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
-      <LoginForm isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser}/>
+      <NavBar loggedInUser={loggedInUser} 
+      logout={logout} onlineUser={onlineUser} 
+      postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
+      <LoginForm onlineUser={onlineUser} isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser} />
       <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser} onlineUser={onlineUser}></Maps>
-      <Routes>
-        <Route path='/' element={<UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins}/>} />
-      </Routes>
+      <UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins} />
     </BrowserRouter>
 
 

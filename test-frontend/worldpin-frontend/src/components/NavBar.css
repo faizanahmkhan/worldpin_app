@@ -27,13 +27,14 @@
   }
 
   .register-icon {
+    font-size: 15px;
     position: absolute;
     width: 80px;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     color: black;
     height: 40px;
     left: 92%;
@@ -60,6 +61,7 @@
     min-height: 0vh;
     position: fixed;
     z-index: 1;
+    top:100px;
   }
   
   .form-box{

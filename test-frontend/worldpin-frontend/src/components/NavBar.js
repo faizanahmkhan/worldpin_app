@@ -3,7 +3,7 @@ import "./NavBar.css";
 import { useState, useEffect } from "react";
 import { AppBar, Button, Toolbar } from "@material-ui/core";
 
-function NavBar({ handleLoginClick, handleRegisterClick, loggedInUser }) {
+function NavBar({ handleLoginClick, handleRegisterClick, loggedInUser, logo, onlineUser, logout }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleClick = () => {
@@ -14,37 +14,22 @@ function NavBar({ handleLoginClick, handleRegisterClick, loggedInUser }) {
     handleRegisterClick();
   };
 
-  useEffect(() => {
-    checkStorage();
-    return () => {};
-  }, [isLoggedIn]);
-  function checkStorage() {
-    if (localStorage.getItem("user")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }
-  const logout = () => {
-    localStorage.removeItem("user");
-    setIsLoggedIn(false);
+  const handleLogout = () => {
+    logout();
   };
 
   return (
     <div>
-      <AppBar>
-        <Toolbar>
-          {!loggedInUser ? (
-          <span onClick={handleClick} className="login-icon">  <Button color="inherit" >Login</Button></span>
+      {/* <AppBar>
+        <Toolbar> */}
+          {!onlineUser ? (
+            <span onClick={handleClick} className="login-icon">  <Button color="inherit" >Login</Button></span>
           ) : (
-            <span onClick={logout} className="login-icon"><Button color="inherit" > Logout </Button></span>
+            <span onClick={handleLogout} className="login-icon"><Button color="inherit" > Logout </Button></span>
           )}
-          <span onClick={handlePress} className="register-icon">
-            {" "}
-            Register{" "}
-          </span>
-        </Toolbar>
-      </AppBar>
+          <span onClick={handlePress} className="register-icon">{" "}REGISTER{" "}</span>
+        {/* </Toolbar>
+      </AppBar> */}
     </div>
   );
 }
