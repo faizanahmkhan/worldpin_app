@@ -37,7 +37,7 @@ function NavBar({ handleLoginClick, handleRegisterClick, loggedInUser }) {
           {!loggedInUser ? (
           <span onClick={handleClick} className="login-icon">  <Button color="inherit" >Login</Button></span>
           ) : (
-            <span onClick={handleClick} className="login-icon"><Button onClick={logout} color="inherit" > Logout </Button></span>
+            <span onClick={logout} className="login-icon"><Button color="inherit" > Logout </Button></span>
           )}
           <span onClick={handlePress} className="register-icon">
             {" "}

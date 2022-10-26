@@ -8,18 +8,22 @@ import {v4} from "uuid";
 const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
 
 //   const [value, onChange] = useState(new Date());
+    // const [location, setLocation] = useState("");
+    const [description, setDescription] = useState("")
+    const [image, setImage] = useState ("");
+    const [date, setDate ] = useState ({})
 
     const [newPin, setNewPin] = useState({
         image: Image,
         description: "",
         date: Date,
         location: "",
-        user: User.name
+        user: onlineUser.name
     })
 
     const handlePinChange = event => {
-        let propertyName = event.target.name
-        let savedPin = {...newPin}
+        const propertyName = event.target.value
+        const savedPin = {...newPin}
         savedPin[propertyName] = event.target.value
         setNewPin(savedPin)
     console.log(savedPin);
@@ -34,10 +38,21 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
             description: "",
             date: Date,
             location: "",
-            user: User.name
+            user: onlineUser.name
         })
     console.log(newPin);
     }
+    
+    // const handleFormSubmit = event => {
+    //     event.preventDefault();
+    //     let newChosenUser = {
+    //         name: userName,
+    //         pins: []
+    //     }
+    //     setChosenUser(newChosenUser);
+    //     loggedInUser(newChosenUser);
+    //     console.log(newChosenUser);
+    // }
 
   const [imageUpload, setImageUpload] = useState(null)
 //   const [imageList, setImageList] = useState([])  
