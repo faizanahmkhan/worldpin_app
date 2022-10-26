@@ -56,9 +56,6 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
         setClicked(false)
     }
 
-
-    const handleClick = () => { }
-
     return (
         <>
             <div className="overlay">

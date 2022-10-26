@@ -16,43 +16,24 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
     const [newPin, setNewPin] = useState({
         image: Image,
         description: "",
-        date: Date,
+        date: date,
         location: "",
-        user: onlineUser.name
+        // user: onlineUser.name
     })
-
-    const handlePinChange = event => {
-        const propertyName = event.target.value
-        const savedPin = {...newPin}
-        savedPin[propertyName] = event.target.value
-        setNewPin(savedPin)
-    console.log(savedPin);
-    }
 
     const handlePinSubmit = event => {
         event.preventDefault();
-        postPin(newPin)
-        addPinToUser(onlineUser.id, newPin.id)
-        setNewPin({
+        let newPin = {
             image: Image,
-            description: "",
-            date: Date,
+            description: description,
+            date: date,
             location: "",
-            user: onlineUser.name
-        })
+            // user: onlineUser.name
+        }
+        postPin(newPin)
+        // addPinToUser(onlineUser.id, newPin.id)
     console.log(newPin);
     }
-    
-    // const handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     let newChosenUser = {
-    //         name: userName,
-    //         pins: []
-    //     }
-    //     setChosenUser(newChosenUser);
-    //     loggedInUser(newChosenUser);
-    //     console.log(newChosenUser);
-    // }
 
   const [imageUpload, setImageUpload] = useState(null)
 //   const [imageList, setImageList] = useState([])  
@@ -119,7 +100,8 @@ return (
                                 type="text"
                                 name="name"
                                 placeholder="Pin Description"
-                                onChange={handlePinChange}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                             
                             <label>Date</label>
@@ -130,7 +112,8 @@ return (
                                 name="trip-start"
                                 min="01-01-1990" 
                                 max="01-01-2030"
-                                onChange={handlePinChange}
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
                             />
                             <input type="submit" value="Add Pin" className="login-btn"
                             />
