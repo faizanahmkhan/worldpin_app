@@ -5,26 +5,28 @@ import { useState } from "react";
 
 const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
 
+    const [userName, setUserName] = useState("");
     const [chosenUser, setChosenUser] = useState({
         name: "",
         pins: []
-    })
+    });
 
-    const [clicked, setClicked] = useState(false)
+    const [clicked, setClicked] = useState(false);
     const [newUser, setNewUser] = useState({
         name: "",
         pins: []
-    })
+    });
 
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        loggedInUser(chosenUser);
-        setChosenUser({
-            name: "",
+        let newChosenUser = {
+            name: userName,
             pins: []
-        })
-        console.log(chosenUser);
+        }
+        setChosenUser(newChosenUser);
+        loggedInUser(newChosenUser);
+        console.log(newChosenUser);
     }
 
     const handleRegisterChange = event => {
@@ -63,7 +65,7 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
                 <div className={`${!isLogin ? "active" : ""} show `}>
                     <div className="login-form">
                         <div className="form-box solid">
-                            <form>
+                            <form onSubmit={handleFormSubmit}>
                                 <h2 className="login-text">Sign in</h2>
                                 <label>Username</label>
                                 <br></br>
@@ -71,6 +73,8 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
                                     className="login-box"
                                     type="text"
                                     name="name"
+                                    value={userName}
+                                    onChange={(e) => setUserName(e.target.value)}
                                 />
                                 <br></br>
                                 <input type="submit" value="LOGIN" className="login-btn" />

@@ -31,14 +31,13 @@ function App() {
     setPins(pinData)
   };
 
-  const loggedInUser = async (name) => {
+  const loggedInUser = async ({name}) => {
     const response = await fetch(`http://localhost:8080/users/${name}`)
     const selectedUser = await response.json()
-    console.log(selectedUser);
-    setOnlineUser(selectedUser)
-    console.log(onlineUser);
+    setOnlineUser(selectedUser[0])
+    
   };
-
+  
   const postUser = async newUser => {
     const response = await fetch("http://localhost:8080/users", {
       method: "POST",
@@ -90,9 +89,9 @@ function App() {
     <BrowserRouter>
       <NavBar loggedInUser={loggedInUser} postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
       <LoginForm isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser}/>
-      <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser}></Maps>
+      <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser} onlineUser={onlineUser}></Maps>
       <Routes>
-        <Route path='/account' element={<UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins}/>} />
+        <Route path='/' element={<UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins}/>} />
       </Routes>
     </BrowserRouter>
 

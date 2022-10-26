@@ -65,15 +65,15 @@ public class UserController {
         return users != null ? new ResponseEntity<>(users, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-     @GetMapping(value = "/{id}")
-     public ResponseEntity<User> getUserById (@PathVariable Long id){
-         Optional<User> user = userService.getUserById(id);
-         if (user.isPresent()){
-             return new ResponseEntity<>(user.get(),HttpStatus.OK);
-         } else {
-             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-         }
-     }
+//     @GetMapping(value = "/{id}")
+//     public ResponseEntity<User> getUserById (@PathVariable Long id){
+//         Optional<User> user = userService.getUserById(id);
+//         if (user.isPresent()){
+//             return new ResponseEntity<>(user.get(),HttpStatus.OK);
+//         } else {
+//             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+//         }
+//     }
 
     // Post Requests
     @PostMapping (value = "/pin")
