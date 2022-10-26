@@ -34,6 +34,10 @@ public class UserService {
         return user;
     }
 
+    public List<User> getUserByName(String name){
+        return userRepository.findUserByName(name); // Might need to change " .get(); "?
+    }
+
     public Optional<User> addPinToUser(long userId, long pinId){
         Optional<User> user = userRepository.findById(userId);
         Optional<Pin> pin = pinRepository.findById(pinId);

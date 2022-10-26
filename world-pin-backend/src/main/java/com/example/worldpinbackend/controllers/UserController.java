@@ -59,6 +59,12 @@ public class UserController {
         return pins != null ? new ResponseEntity<>(pins, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping (value = "/{name}")
+    public ResponseEntity<List<User>> getUserByName (@PathVariable String name){
+        List<User> users = userService.getUserByName(name);
+        return users != null ? new ResponseEntity<>(users, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
      @GetMapping(value = "/{id}")
      public ResponseEntity<User> getUserById (@PathVariable Long id){
          Optional<User> user = userService.getUserById(id);

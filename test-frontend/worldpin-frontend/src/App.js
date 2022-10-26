@@ -17,10 +17,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
 
-  const loggedInUser = chosenUser => {
-    if (chosenUser.name === "") setOnlineUser()
-    setOnlineUser(chosenUser)
-  };
+ 
 
   const fetchUsers = async () => {
     const response = await fetch("http://localhost:8080/users");
@@ -32,6 +29,14 @@ function App() {
     const response = await fetch("http://localhost:8080/users/pins");
     const pinData = await response.json();
     setPins(pinData)
+  };
+
+  const loggedInUser = async (name) => {
+    const response = await fetch(`http://localhost:8080/users/${name}`)
+    const selectedUser = await response.json()
+    console.log(selectedUser);
+    setOnlineUser(selectedUser)
+    console.log(onlineUser);
   };
 
   const postUser = async newUser => {
