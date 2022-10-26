@@ -17,7 +17,6 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
         pins: []
     });
 
-
     const handleFormSubmit = event => {
         event.preventDefault();
         let newChosenUser = {
@@ -49,13 +48,11 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
 
     const handleRegisterClick = () => {
         setClicked(true)
-
     }
 
     const handleLogInClick = () => {
         setClicked(false)
     }
-
 
     const handleClick = () => { }
 
@@ -78,14 +75,15 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
                                         onChange={(e) => setUserName(e.target.value)}
                                     />
                                     <br></br>
-                                    <input type="submit" value="LOGIN" className="login-btn" />
+                                    <input onClick={handleClick} type="submit" value="LOGIN" className="login-btn" />
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
-<div></div>
+                <div className={`${isLogin ? "active" : ""} show `}>
+                </div>
             )}
             <div className="overlay">
                 <div className={`${!isRegister ? "active" : ""} show `}>

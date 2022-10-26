@@ -1,4 +1,4 @@
-import './App.css'; 
+import './App.css';
 import React from 'react';
 import LoginForm from './components/LoginForm';
 import NavBar from './components/NavBar';
@@ -16,10 +16,7 @@ function App() {
   const [userPins, setUserPins] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
 
   const fetchUsers = async () => {
     const response = await fetch("http://localhost:8080/users");
@@ -37,7 +34,6 @@ function App() {
     const response = await fetch(`http://localhost:8080/users/${name}`)
     const selectedUser = await response.json()
     setOnlineUser(selectedUser[0])
-
   };
 
   const postUser = async newUser => {
@@ -69,17 +65,14 @@ function App() {
     setUserPins([...updatedPins.pins])
   }
 
-
   useEffect(() => {
     fetchUsers()
     fetchPins()
   }, [])
 
-
-
   const handleLoginClick = () => {
     setIsLogin((isLogin) => !isLogin)
-    localStorage.setItem('user','id');
+    localStorage.setItem('user', 'id');
   }
 
   const handleRegisterClick = () => {
@@ -97,22 +90,21 @@ function App() {
       setIsLoggedIn(false);
     }
   }
+
   const logout = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
+    window.location.reload()
   };
-  return (
 
+  return (
     <BrowserRouter>
-      <NavBar loggedInUser={loggedInUser} 
-      logout={logout} onlineUser={onlineUser} 
-      postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
+      <NavBar loggedInUser={loggedInUser} logout={logout} onlineUser={onlineUser} postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
       <LoginForm onlineUser={onlineUser} isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser} />
       <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser} onlineUser={onlineUser}></Maps>
       <UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins} />
     </BrowserRouter>
-
-
   )
 }
+
 export default App;
