@@ -1,7 +1,9 @@
-import { useState } from "react";
-import 'react-datepicker/dist/react-datepicker.css'
 import User from "./User";
-
+import { useEffect, useState } from "react";
+import 'react-datepicker/dist/react-datepicker.css';
+import {storage} from "./firebase";
+import {ref, uploadBytes, listAll, getDownloadURL} from "firebase/storage";
+import {v4} from "uuid";
 
 const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
 
@@ -37,6 +39,43 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
     console.log(newPin);
     }
 
+  const [imageUpload, setImageUpload] = useState(null)
+//   const [imageList, setImageList] = useState([])  
+//   const imageListRef = ref(storage, "images/")
+
+  const uploadImage = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
+    uploadBytes(imageRef, imageUpload).then(() => {
+        alert("Image UPLOADED")
+    })
+  };
+
+//   const uploadImage = () => {
+//     if (imageUpload == null) return;
+//     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
+//     uploadBytes(imageRef, imageUpload).then((snapshot) => {
+//      getDownloadURL(snapshot.ref).then((url) => {
+//       setImageList((prev) => [...prev, url])  
+
+//     })
+//     })
+// };
+
+
+//   useEffect(() => {
+//     listAll(imageListRef).then((response) =>{
+//         response.items.forEach((item) => {
+//             getDownloadURL(item).then((url) => {
+//                 setImageList((prev) => [...prev, url]);
+//             });
+//         });
+//     });
+//   },[])
+
+// Images aren't displayed just yet
+
+
 return (
     <>
         <div className="overlay">
@@ -52,9 +91,12 @@ return (
                             <input
                                 className="login-box"
                                 type="file" id="myFile" name="filename"
-                            
+                                
                             />
-                            
+                            <button
+                            onClick={uploadImage}
+                            onChange={(event) => {setImageUpload(event.target.files[0])}} 
+                            >Add image</button>
                             <label>Pin Description</label>
                             <br></br>
                             <input
@@ -75,7 +117,8 @@ return (
                                 max="01-01-2030"
                                 onChange={handlePinChange}
                             />
-                            <input type="submit" value="Add Pin" className="login-btn" />
+                            <input type="submit" value="Add Pin" className="login-btn"
+                            />
                         </form>
                     </div>
                 </div>
