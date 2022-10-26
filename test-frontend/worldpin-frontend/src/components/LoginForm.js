@@ -29,9 +29,8 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
 
     const handleRegisterChange = event => {
         const propertyName = event.target.name
-        const savedUser = { ...newUser }
+        const savedUser = {...newUser}
         savedUser[propertyName] = event.target.value
-        console.log(event.target.value);
         setNewUser(savedUser)
         console.log(savedUser);
     }
@@ -40,19 +39,21 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
         event.preventDefault();
         postUser(newUser)
         setNewUser({
-            name: "",
+            name:"",
             pins: []
         })
-        console.log(newUser);
+       console.log(newUser);
     }
-
+   
     const handleRegisterClick = () => {
         setClicked(true)
+        
     }
 
     const handleLogInClick = () => {
         setClicked(false)
     }
+
 
     const handleClick = () => { }
 
@@ -62,7 +63,7 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
                 <div className={`${!isLogin ? "active" : ""} show `}>
                     <div className="login-form">
                         <div className="form-box solid">
-                            <form onSubmit = {handleFormSubmit}>
+                            <form>
                                 <h2 className="login-text">Sign in</h2>
                                 <label>Username</label>
                                 <br></br>
@@ -78,6 +79,7 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
                     </div>
                 </div>
             </div>
+
             <div className="overlay">
                 <div className={`${!isRegister ? "active" : ""} show `}>
                     <div className="login-form">
@@ -90,18 +92,17 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
                                     className="login-box"
                                     type="text"
                                     name="name"
-                                    onChange={handleRegisterChange}
-                                    value={newUser.name}
                                 />
                                 <br></br>
-                                <input  type="submit" value="REGISTER" className="login-btn" />
+                                <input onChange={handleRegisterChange} type="submit" value="REGISTER" className="login-btn" />
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
         </>
     )
-}
 
+}
 export default LoginForm;
