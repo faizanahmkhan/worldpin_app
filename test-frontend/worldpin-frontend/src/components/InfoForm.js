@@ -36,41 +36,44 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
     }
 
   const [imageUpload, setImageUpload] = useState(null)
-//   const [imageList, setImageList] = useState([])  
-//   const imageListRef = ref(storage, "images/")
+  const [imageList, setImageList] = useState([])  
+  const imageListRef = ref(storage, "images/")
+
+//   const uploadImage = (event) => {
+//     event.preventDefault();
+//     if (imageUpload == null) return;
+//     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
+//     uploadBytes(imageRef, imageUpload).then(() => {
+//         alert("Image UPLOADED")
+//     })
+//   };
 
   const uploadImage = (event) => {
     event.preventDefault();
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
-    uploadBytes(imageRef, imageUpload).then(() => {
-        alert("Image UPLOADED")
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+     getDownloadURL(snapshot.ref).then((url) => {
+      setImageList((prev) => [...prev, url])  
+
     })
-  };
-
-//   const uploadImage = () => {
-//     if (imageUpload == null) return;
-//     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
-//     uploadBytes(imageRef, imageUpload).then((snapshot) => {
-//      getDownloadURL(snapshot.ref).then((url) => {
-//       setImageList((prev) => [...prev, url])  
-
-//     })
-//     })
-// };
+    })
+};
 
 
-//   useEffect(() => {
-//     listAll(imageListRef).then((response) =>{
-//         response.items.forEach((item) => {
-//             getDownloadURL(item).then((url) => {
-//                 setImageList((prev) => [...prev, url]);
-//             });
-//         });
-//     });
-//   },[])
+  useEffect(() => {
+    listAll(imageListRef).then((response) =>{
+        response.items.forEach((item) => {
+            getDownloadURL(item).then((url) => {
+                setImageList((prev) => [...prev, url]);
+            });
+        });
+    });
+  },[])
 
 // Images aren't displayed just yet
+
+
 
 
 return (
