@@ -14,6 +14,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
+
 // const libraries = ["places"]; //when react rerenders, it does a div to see if it needs to rerender. When arrays and objects are used as literals, react looks to axt as if theyre diff objects, even though they have the same details within it (especially the google maps api), and rerenders in a weird way and avoid too many rerenders
 
 const containerStyle = {
@@ -72,6 +73,24 @@ const Maps = () => {
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
 
+  const postPin = async (newPin) => {
+    const response = await fetch("http://localhost:8080/users/pin", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newPin)
+    })
+    const savedPin = await response.json()
+    setMarkers([...markers, savedPin])
+  }
+
+  const addPinToUser = async (newPin) => {
+    const response = await fetch (`http://localhost:80080/${userId}/${pinId}`, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+    })
+    
+  }
+
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -120,7 +139,7 @@ const Maps = () => {
                   setSelected(marker);
                 }}
             />
-            <InfoForm/>
+            <InfoForm postPin={postPin} />
             </>
           )
         )}
