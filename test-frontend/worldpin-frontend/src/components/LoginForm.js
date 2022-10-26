@@ -92,9 +92,10 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister }) => {
                                     className="login-box"
                                     type="text"
                                     name="name"
+                                    onChange={handleRegisterChange} 
                                 />
                                 <br></br>
-                                <input onChange={handleRegisterChange} type="submit" value="REGISTER" className="login-btn" />
+                                <input type="submit" value="REGISTER" className="login-btn" />
                             </form>
                         </div>
                     </div>
