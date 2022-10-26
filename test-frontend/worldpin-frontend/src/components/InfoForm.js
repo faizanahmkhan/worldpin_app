@@ -39,7 +39,8 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
 //   const [imageList, setImageList] = useState([])  
 //   const imageListRef = ref(storage, "images/")
 
-  const uploadImage = () => {
+  const uploadImage = (event) => {
+    event.preventDefault();
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
     uploadBytes(imageRef, imageUpload).then(() => {
@@ -87,11 +88,11 @@ return (
                             <input
                                 className="login-box"
                                 type="file" id="myFile" name="filename"
-                                
+                                onChange={(event) => {setImageUpload(event.target.files[0])}} 
                             />
                             <button
                             onClick={uploadImage}
-                            onChange={(event) => {setImageUpload(event.target.files[0])}} 
+                            
                             >Add image</button>
                             <label>Pin Description</label>
                             <br></br>
