@@ -10,19 +10,26 @@ import UserContainer from './containers/UserContainer'
 
 function App() {
 
-  const [users, setUsers] = useState([])
-  const [onlineUser, setOnlineUser] = useState()
+  const [users, setUsers] = useState([]);
+  const [pins, setPins] = useState([]);
+  const [onlineUser, setOnlineUser] = useState();
 
   const loggedInUser = chosenUser => {
     if (chosenUser.name === "") setOnlineUser()
     setOnlineUser(chosenUser)
-  }
+  };
 
   const fetchUsers = async () => {
     const response = await fetch("http://localhost:8080/users");
     const userData = await response.json();
     setUsers(userData);
-  }
+  };
+
+  const fetchPins = async () => {
+    const response = await fetch("http://localhost:8080/users/pins");
+    const pinData = await response.json();
+    setPins(pinData)
+  };
 
   const postUser = async newUser => {
     const response = await fetch("http://localhost:8080/users", {
@@ -32,7 +39,7 @@ function App() {
     })
     const savedUser = await response.json()
     setUsers([...users, savedUser])
-  }
+  };
 
   
   useEffect(() => {
