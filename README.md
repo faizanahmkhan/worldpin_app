@@ -21,6 +21,11 @@ Ravi: [LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
 
 ## Table of Contents
 
+- Summary
+- Set-up
+- Requests
+- Project Structure 
+- Extensions
 
 
 ## Summary
@@ -30,16 +35,19 @@ Bright Network Technology Academy has tasked us with producing an API using Spri
 
 ## Set-up
 
-1.First ensure that Java 17 is installed to run the game.
+(Note: Java 17 is required to run the backend of this app. PostgreSQL is required for the database.) 
 
-2.Clone this repository by clicking the green 'code' sign on top of this page. Click the SSH key and type in your terminal the following: git clone "https://github.com/bendesousa/bnta_capstone_project".
+1.Clone this repository by clicking the green 'code' sign on top of this page. Click the SSH key and type in your terminal the following: git clone "https://github.com/bendesousa/bnta_capstone_project".
 
-3.Open up and run the file in IntelliJ.
+3. Create a database with the name world_pin.
 
-4.Make sure you have SQL downloaded and a database created through Terminal with the command: createdb worldpin.
-Open up Postman to start the requests.
+4. Open the react app and run the command npm install (you may be required to add --force flag due to version control issues). 
+
+5. To start up the app, first get the backend running in your IDE of choice (this project was built using IntelliJ). Then run the frontend with the npm start command.
 
 ##Requests
+
+The following are the lists of requests that are available to be run to the backend. 
 
 | `…/pins ` | `GET` | Get all Pins |
 
