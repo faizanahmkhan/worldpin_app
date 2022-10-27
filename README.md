@@ -13,8 +13,7 @@ Faizan: [LinkedIn](https://www.linkedin.com/in/fkhan38/)
 Hasmeet: [LinkedIn](https://www.linkedin.com/in/hasmeet-k-30680759/)
 [email](hasmeetkaur.hk@gmail.com)
 
-Kai: [LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
-[email](Owenkaic@gmail.com)
+Kai: [email](Owenkaic@gmail.com)
 
 Ravi: [LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
 [email](ravihusseinpatel@gmail.com)
@@ -40,13 +39,44 @@ Bright Network Technology Academy has tasked us with producing an API using Spri
 4.Make sure you have SQL downloaded and a database created through Terminal with the command: createdb worldpin.
 Open up Postman to start the requests.
 
+##Requests
+
+| `…/pins ` | `GET` | Get all Pins |
+
+| `…/pins/{date} ` | `GET` | Get Pins by date |
+
+| `…/pins/{location} `| `GET`| Get Pins by location |
+
+| `…/pins/{name}` | `GET` | Get Pins by name |
+
+| `…/name` | `GET` | Get Username |
+
+| `…/pin ` | `POST` | Save pin |
+
+| `…/{userId}/{pinId} ` | `POST` | Save pin to user |
+
+| `…/pin ` | `DELETE` | Remove pin |
+
+
 
 ## Project Structure
+
 ### Wireframe
+![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/pic_wireframe.png)
+
 ### UML
+![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/UML.png)
+
 ### ERD
+![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/Capstone_ERD.svg)
+
 ### Dataflow
+![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/capstone_dataflow.png)
 
 
 ## Extensions
+
+-Add filter Pins by : Location(country) & Year(images were taken)
+-Add search by User.
+-Add security to authentication so only certain users can 
 
