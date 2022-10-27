@@ -11,7 +11,6 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
         pins: []
     });
 
-    const [clicked, setClicked] = useState(false);
     const [newUser, setNewUser] = useState({
         name: "",
         pins: []
@@ -25,7 +24,6 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
         }
         setChosenUser(newChosenUser);
         loggedInUser(newChosenUser);
-        console.log(newChosenUser);
     }
 
     const handleRegisterChange = event => {
@@ -33,7 +31,6 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
         const savedUser = { ...newUser }
         savedUser[propertyName] = event.target.value
         setNewUser(savedUser)
-        console.log(savedUser);
     }
 
     const handleRegisterSubmit = event => {
@@ -43,18 +40,8 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
             name: "",
             pins: []
         })
-        console.log(newUser);
+        window.location.reload() 
     }
-
-    const handleRegisterClick = () => {
-        setClicked(true)
-    }
-
-    const handleLogInClick = () => {
-        setClicked(false)
-    }
-
-    const handleClick = () => { }
 
     return (
         <>
@@ -75,7 +62,7 @@ const LoginForm = ({ isLogin, users, loggedInUser, postUser, isRegister, onlineU
                                         onChange={(e) => setUserName(e.target.value)}
                                     />
                                     <br></br>
-                                    <input onClick={handleClick} type="submit" value="LOGIN" className="login-btn" />
+                                    <input type="submit" value="LOGIN" className="login-btn" />
                                 </form>
                             </div>
                         </div>
