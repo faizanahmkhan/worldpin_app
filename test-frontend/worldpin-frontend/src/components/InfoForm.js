@@ -6,18 +6,8 @@ import {v4} from "uuid";
 
 const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers}) => {
 
-    // const [location, setLocation] = useState("");
     const [description, setDescription] = useState("")
-    const [image, setImage] = useState ("");
     const [date, setDate ] = useState ({})
-
-    // const [newPin, setNewPin] = useState({
-    //     image: Image,
-    //         description: description,
-    //         date: date,
-    //         location: "",
-    //         user: onlineUser.name
-    // })
 
     const handlePinSubmit = async event => {
         event.preventDefault();

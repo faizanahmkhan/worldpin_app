@@ -22,18 +22,18 @@ public class Pin {
     private String location;
 
     @Column (name = "image_id")
-    private long image_id; //will need changing later
+    private String image; //will need changing later
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties({"pins"})
     private User user;
 
-    public Pin(String description, Date date, String location, long image_id, User user) {
+    public Pin(String description, Date date, String location, String image, User user) {
         this.description = description;
         this.date = date;
         this.location = location;
-        this.image_id = image_id;
+        this.image = image;
         this.user = user;
     }
 
@@ -72,12 +72,12 @@ public class Pin {
         this.location = location;
     }
 
-    public long getImage_id() {
-        return image_id;
+    public String getImage() {
+        return image;
     }
 
-    public void setImage_id(long image_id) {
-        this.image_id = image_id;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public User getUser() {
