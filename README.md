@@ -43,6 +43,7 @@ Open up Postman to start the requests.
 
 ## Project Structure
 ### Wireframe
+![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/pic_wireframe.png)
 ### UML
 
 ![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/UML.png)
