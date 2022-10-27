@@ -4,17 +4,17 @@ import {storage} from "./firebase";
 import {ref, uploadBytes, listAll, getDownloadURL} from "firebase/storage";
 import {v4} from "uuid";
 
-const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers}) => {
+const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers, setIsPinPopped}) => {
 
     const [description, setDescription] = useState("")
     const [date, setDate ] = useState ({})
 
-    const handlePinSubmit = async event => {
-        event.preventDefault();
+    const handlePinSubmit = async (imageUrl) => {
+    
         let location = markers[markers.length -1]
         let newPin = {
 
-            image: imageList[imageList.length - 1],
+            image: imageUrl,
             description: description,
             date: date,
             location: location.lat + "," + location.lng, 
@@ -22,6 +22,7 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers}) => 
         }
         let savedPin = await postPin(newPin)
         addPinToUser(onlineUser.id, savedPin.id)
+        setIsPinPopped(false)
         console.log(location.lat);
     console.log(savedPin);
     }
@@ -32,11 +33,12 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers}) => 
 
   const uploadImage = (event) => {
     event.preventDefault();
+    
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
      getDownloadURL(snapshot.ref).then((url) => {
-      setImageList((prev) => [...prev, url])  
+     handlePinSubmit(url) 
 
     })
     })
@@ -59,7 +61,7 @@ return (
             <div className={`${!isPinPopped ? "active" : ""} show `}>
                 <div className="login-form">
                     <div className="form-box solid">
-                        <form onSubmit={handlePinSubmit}>
+                        <form>
                             <h2 className="login-text">Pin Form</h2>
                             <br></br>
                             
@@ -70,10 +72,7 @@ return (
                                 type="file" id="myFile" name="filename"
                                 onChange={(event) => {setImageUpload(event.target.files[0])}} 
                             />
-                            <button
-                            onClick={uploadImage}
-                            className="login-btn"
-                            >Add image</button>
+                            
                             <br></br>
                             <label>Pin Description</label>
                             <br></br>
@@ -97,8 +96,10 @@ return (
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
                             />
-                            <input type="submit" value="Add Pin" className="login-btn"
-                            />
+                            <button
+                            onClick={uploadImage}
+                            className="login-btn"
+                            >Add pin</button>
                         </form>
                     </div>
                 </div>

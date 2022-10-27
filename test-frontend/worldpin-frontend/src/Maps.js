@@ -9,7 +9,7 @@ import {formatRelative} from "date-fns";
 import {
   GoogleMap,
   useJsApiLoader,
-  Marker,
+  MarkerF,
   InfoWindow,
 } from "@react-google-maps/api";
 
@@ -52,11 +52,25 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
 
   const existingPins = pins.map( (pin) => {
     let latLng = pin.location.split(",")
-    return {
-      lat: parseFloat(latLng[0]),
-      lng: parseFloat(latLng[1]),
-      title: pin.description
-    }
+    
+    pin.lat = parseFloat(latLng[0])
+    pin.lng = parseFloat(latLng[1])
+    return ( <MarkerF 
+    key={`${pin.lat}-${pin.lng}`} 
+    position={{ lat: pin.lat, lng: pin.lng }} 
+    
+
+    icon={{
+      
+      url: `/icon.png`,
+      origin: new window.google.maps.Point(0, 0),  
+      anchor: new window.google.maps.Point(15, 15), 
+      scaledSize: new window.google.maps.Size(30, 30), 
+    }}
+    onClick={() => {
+        setSelected(pin);
+      }}
+  />)
   })
 
   const onMapClick = useCallback((event) => {  //psuedo-code
@@ -115,7 +129,7 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
             marker //we already have our useState,when we click a location in the map, we can see the lat and long generated in the console; but we need this markers.map method to create pins in these locations
           ) => (
             <>
-            <Marker //we want to show a marker component that comes with our googlemaps package (this is the little red pin we see whenever we click somewhere on googlemaps)
+            <MarkerF //we want to show a marker component that comes with our googlemaps package (this is the little red pin we see whenever we click somewhere on googlemaps)
               key={`${marker.lat}-${marker.lng}`} //as we're iterating, we add a key component so each clicked location is unique
               position={{ lat: marker.lat, lng: marker.lng }} //let's show our pin at the specified clicked location, based on it's lat and long
               
@@ -131,36 +145,15 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
                   setSelected(marker);
                 }}
             />
-            <InfoForm postPin={postPin} addPinToUser={addPinToUser} isPinPopped={isPinPopped} onlineUser={onlineUser} markers={markers}/>
+            <InfoForm postPin={postPin} addPinToUser={addPinToUser} isPinPopped={isPinPopped} onlineUser={onlineUser} markers={markers} setIsPinPopped={setIsPinPopped}/>
             </>
           )
         )}
 
-{existingPins.map(
-          (
-            marker //we already have our useState,when we click a location in the map, we can see the lat and long generated in the console; but we need this markers.map method to create pins in these locations
-          ) => (
-            <>
-            <Marker //we want to show a marker component that comes with our googlemaps package (this is the little red pin we see whenever we click somewhere on googlemaps)
-              key={`${marker.lat}-${marker.lng}`} //as we're iterating, we add a key component so each clicked location is unique
-              position={{ lat: marker.lat, lng: marker.lng }} //let's show our pin at the specified clicked location, based on it's lat and long
-              
+        {existingPins}
 
-              icon={{
-                //using icon we can override the original pin and add our own
-                url: `/icon.png`,
-                origin: new window.google.maps.Point(0, 0), //we set origin so when we click, pin appears EXACTLY where clicked
-                anchor: new window.google.maps.Point(15, 15), //we set anchor half the size, so middle of our pin icon is exactly where they clicked
-                scaledSize: new window.google.maps.Size(30, 30), //set size of icon
-              }}
-              onClick={() => {
-                  setSelected(marker);
-                }}
-            />
-            <InfoForm postPin={postPin} addPinToUser={addPinToUser} isPinPopped={isPinPopped} onlineUser={onlineUser} markers={markers}/>
-            </>
-          )
-        )}
+
+       
 
             {selected ? (
                       <InfoWindow
@@ -171,10 +164,12 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
                       >
                         <div>
                           <h2>
-                            <span role="img" aria-label="island">
+                            {/* <span role="img" aria-label="island">
                               🏖
-                            </span>{" "}
-                            {selected.title.toString()}
+                            </span>{" "} */}
+                            <img src={selected.image} alt="holiday picture" className="pin-image"/>
+                            <br></br>
+                            {selected.description}
 
                           </h2>
                           {/* Want to add an Img tag here */}

@@ -138,3 +138,7 @@
     color: #1E90FF;
   }
   
+.pin-image {
+  height: 50vh;
+  width: auto;
+}
