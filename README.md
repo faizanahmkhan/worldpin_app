@@ -13,8 +13,7 @@ Faizan: [LinkedIn](https://www.linkedin.com/in/fkhan38/)
 Hasmeet: [LinkedIn](https://www.linkedin.com/in/hasmeet-k-30680759/)
 [email](hasmeetkaur.hk@gmail.com)
 
-Kai: [LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
-[email](Owenkaic@gmail.com)
+Kai: [email](Owenkaic@gmail.com)
 
 Ravi: [LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
 [email](ravihusseinpatel@gmail.com)
