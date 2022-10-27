@@ -7,7 +7,6 @@ import {v4} from "uuid";
 
 const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
 
-//   const [value, onChange] = useState(new Date());
     // const [location, setLocation] = useState("");
     const [description, setDescription] = useState("")
     const [image, setImage] = useState ("");
@@ -38,15 +37,6 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
   const [imageUpload, setImageUpload] = useState(null)
   const [imageList, setImageList] = useState([])  
   const imageListRef = ref(storage, "images/")
-
-//   const uploadImage = (event) => {
-//     event.preventDefault();
-//     if (imageUpload == null) return;
-//     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
-//     uploadBytes(imageRef, imageUpload).then(() => {
-//         alert("Image UPLOADED")
-//     })
-//   };
 
   const uploadImage = (event) => {
     event.preventDefault();
