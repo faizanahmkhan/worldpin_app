@@ -1,4 +1,3 @@
-// import "./User.css"
 
 const User = ({user, loggedInUser}) => {
 

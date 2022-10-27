@@ -1,5 +1,5 @@
 
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
 
 import Locate from "./Locate";
@@ -11,11 +11,9 @@ import {
 	ComboboxPopover,
 	ComboboxList,
 	ComboboxOption,
-	ComboboxOptionText,
 } from "@reach/combobox";
-import eachMinuteOfIntervalWithOptions from "date-fns/esm/fp/eachMinuteOfIntervalWithOptions/index.js";
 
-const PlacesAutocomplete = ({setSelected, mapRef}) => {
+const PlacesAutocomplete = ({ mapRef }) => {
 
     const {
       ready,

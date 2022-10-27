@@ -59,7 +59,6 @@ function App() {
   const addPinToUser = async (userId, pinId) => {
     const response = await fetch(`http://localhost:8080/users/${userId}/${pinId}`, {
       method: "POST",
-      // headers: { 'Content-Type': 'application/json' },
     })
     const updatedPins = await response.json();
     setUserPins([...updatedPins.pins])

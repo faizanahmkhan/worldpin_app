@@ -53,11 +53,6 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers}) => 
     });
   },[])
 
-// Images aren't displayed just yet
-
-
-
-
 return (
     <>
         <div className="overlay">
@@ -111,4 +106,5 @@ return (
     </>
     )
 }
-        export default InfoForm;
+       
+export default InfoForm;
