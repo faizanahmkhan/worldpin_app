@@ -46,7 +46,7 @@ Open up Postman to start the requests.
 ### UML
 ### ERD
 
-![alt text}(https://github.com/bendesousa/bnta_capstone_project/blob/main/Capstone_ERD.svg?raw=true)
+![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/Capstone_ERD.svg?raw=true)
 
 ### Dataflow
 
