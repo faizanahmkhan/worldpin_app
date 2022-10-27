@@ -42,12 +42,19 @@ Open up Postman to start the requests.
 ##Requests
 
 | `…/pins ` | `GET` | Get all Pins |
+
 | `…/pins/{date} ` | `GET` | Get Pins by date |
+
 | `…/pins/{location} `| `GET`| Get Pins by location |
+
 | `…/pins/{name}` | `GET` | Get Pins by name |
+
 | `…/name` | `GET` | Get Username |
+
 | `…/pin ` | `POST` | Save pin |
+
 | `…/{userId}/{pinId} ` | `POST` | Save pin to user |
+
 | `…/pin ` | `DELETE` | Remove pin |
 
 
