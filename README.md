@@ -37,13 +37,13 @@ Bright Network Technology Academy has tasked us with producing an API using Spri
 
 (Note: Java 17 is required to run the backend of this app. PostgreSQL is required for the database.) 
 
-1.Clone this repository by clicking the green 'code' sign on top of this page. Click the SSH key and type in your terminal the following: git clone "https://github.com/bendesousa/bnta_capstone_project".
+1. Clone this repository by clicking the green 'code' sign on top of this page. Click the SSH key and type in your terminal the following: git clone "https://github.com/bendesousa/bnta_capstone_project".
 
-3. Create a database with the name world_pin.
+2. Create a database with the name world_pin.
 
-4. Open the react app and run the command npm install (you may be required to add --force flag due to version control issues). 
+3. Open the react app and run the command npm install (you may be required to add --force flag due to version control issues). 
 
-5. To start up the app, first get the backend running in your IDE of choice (this project was built using IntelliJ). Then run the frontend with the npm start command.
+4. To start up the app, first get the backend running in your IDE of choice (this project was built using IntelliJ). Then run the frontend with the npm start command.
 
 ##Requests
 
