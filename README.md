@@ -12,7 +12,7 @@ Hasmeet:
 
 Kai:
 
-Ravi: [LinkedIn] (https://www.linkedin.com/in/ravihussein-patel/)
+Ravi: [LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
 
 
 ## Table of Contents
