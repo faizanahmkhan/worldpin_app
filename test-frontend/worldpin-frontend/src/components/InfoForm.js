@@ -11,18 +11,18 @@ const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers}) => 
 
     const handlePinSubmit = async event => {
         event.preventDefault();
-        let location = markers[markers.length -1].location
+        let location = markers[markers.length -1]
         let newPin = {
 
             image: imageList[imageList.length - 1],
             description: description,
             date: date,
-            location: "50, 14", 
+            location: location.lat + "," + location.lng, 
             user: onlineUser.name
         }
         let savedPin = await postPin(newPin)
         addPinToUser(onlineUser.id, savedPin.id)
-        console.log(markers[markers.length -1]);
+        console.log(location.lat);
     console.log(savedPin);
     }
 
