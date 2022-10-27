@@ -32,8 +32,11 @@ Bright Network Technology Academy has tasked us with producing an API using Spri
 - Set-up
 
 1.First ensure that Java 17 is installed to run the game.
+
 2.Clone this repository by clicking the green 'code' sign on top of this page. Click the SSH key and type in your terminal the following: git clone "https://github.com/bendesousa/bnta_capstone_project".
+
 3.Open up and run the file in IntelliJ.
+
 4.Make sure you have SQL downloaded and a database created through Terminal with the command: createdb worldpin.
 Open up Postman to start the requests.
 
