@@ -4,7 +4,6 @@ import LoginForm from './components/LoginForm';
 import NavBar from './components/NavBar';
 import Maps from './Maps';
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom"
 import UserContainer from './containers/UserContainer'
 
 
@@ -54,12 +53,13 @@ function App() {
     })
     const savedPin = await response.json()
     setPins([...pins, savedPin])
+    return savedPin
   }
 
   const addPinToUser = async (userId, pinId) => {
-    const response = await fetch(`http://localhost:80080/${userId}/${pinId}`, {
+    const response = await fetch(`http://localhost:8080/users/${userId}/${pinId}`, {
       method: "POST",
-      headers: { 'Content-Type': 'application/json' },
+      // headers: { 'Content-Type': 'application/json' },
     })
     const updatedPins = await response.json();
     setUserPins([...updatedPins.pins])
@@ -98,12 +98,12 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <>
       <NavBar loggedInUser={loggedInUser} logout={logout} onlineUser={onlineUser} postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
       <LoginForm onlineUser={onlineUser} isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser} />
       <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser} onlineUser={onlineUser}></Maps>
       <UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins} />
-    </BrowserRouter>
+    </>
   )
 }
 

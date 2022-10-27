@@ -90,7 +90,7 @@ public class UserController {
     }
 
     @PostMapping (value = "/{userId}/{pinId}")
-    public ResponseEntity<User> addPinToUser(@PathVariable long userId, long pinId ){
+    public ResponseEntity<User> addPinToUser(@PathVariable long userId, @PathVariable Long pinId ){
         Optional<User> user = userService.addPinToUser(userId, pinId);
         return user.isPresent() ? new ResponseEntity<>(user.get(), HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }

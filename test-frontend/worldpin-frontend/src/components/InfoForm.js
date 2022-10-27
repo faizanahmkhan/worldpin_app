@@ -1,37 +1,39 @@
-import User from "./User";
 import { useEffect, useState } from "react";
 import 'react-datepicker/dist/react-datepicker.css';
 import {storage} from "./firebase";
 import {ref, uploadBytes, listAll, getDownloadURL} from "firebase/storage";
 import {v4} from "uuid";
 
-const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser}) => {
+const InfoForm = ({postPin, addPinToUser, isPinPopped, onlineUser, markers}) => {
 
     // const [location, setLocation] = useState("");
     const [description, setDescription] = useState("")
     const [image, setImage] = useState ("");
     const [date, setDate ] = useState ({})
 
-    const [newPin, setNewPin] = useState({
-        image: Image,
-        description: "",
-        date: date,
-        location: "",
-        // user: onlineUser.name
-    })
+    // const [newPin, setNewPin] = useState({
+    //     image: Image,
+    //         description: description,
+    //         date: date,
+    //         location: "",
+    //         user: onlineUser.name
+    // })
 
-    const handlePinSubmit = event => {
+    const handlePinSubmit = async event => {
         event.preventDefault();
+        let location = markers[markers.length -1].location
         let newPin = {
-            image: Image,
+
+            image: imageList[imageList.length - 1],
             description: description,
             date: date,
-            location: "",
-            // user: onlineUser.name
+            location: "50, 14", 
+            user: onlineUser.name
         }
-        postPin(newPin)
-        // addPinToUser(onlineUser.id, newPin.id)
-    console.log(newPin);
+        let savedPin = await postPin(newPin)
+        addPinToUser(onlineUser.id, savedPin.id)
+        console.log(markers[markers.length -1]);
+    console.log(savedPin);
     }
 
   const [imageUpload, setImageUpload] = useState(null)

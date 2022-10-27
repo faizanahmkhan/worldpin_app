@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import mapStyle from "./mapStyle";
-
+// import InfoWindow from "./components/InfoWindow"; 
 import PlacesAutoComplete from "./PlacesAutocomplete"
 import InfoForm from "./components/InfoForm";
 import {formatRelative} from "date-fns";
@@ -9,7 +9,6 @@ import {formatRelative} from "date-fns";
 import {
   GoogleMap,
   useJsApiLoader,
-  useLoadScript,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
@@ -44,7 +43,7 @@ const options = {
     }}
 };
 
-const Maps = ({pins, users, postPin, addPinToUser}) => {
+const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -57,7 +56,7 @@ const Maps = ({pins, users, postPin, addPinToUser}) => {
       {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
-        time: new Date(),
+        // time: new Date(),
 
       },
     ]);
@@ -122,7 +121,7 @@ const Maps = ({pins, users, postPin, addPinToUser}) => {
                   setSelected(marker);
                 }}
             />
-            <InfoForm postPin={postPin} addPinToUser={addPinToUser} isPinPopped={isPinPopped}/>
+            <InfoForm postPin={postPin} addPinToUser={addPinToUser} isPinPopped={isPinPopped} onlineUser={onlineUser} markers={markers}/>
             </>
           )
         )}
