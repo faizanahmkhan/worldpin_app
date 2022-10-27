@@ -55,7 +55,8 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
     return {
       lat: parseFloat(latLng[0]),
       lng: parseFloat(latLng[1]),
-      title: pin.description
+      title: pin.description,
+      image: pin.image
     }
   })
 
@@ -171,9 +172,11 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
                       >
                         <div>
                           <h2>
-                            <span role="img" aria-label="island">
+                            {/* <span role="img" aria-label="island">
                               🏖
-                            </span>{" "}
+                            </span>{" "} */}
+                            <img src={selected.image} alt="holiday picture" className="pin-image"/>
+                            <br></br>
                             {selected.title.toString()}
 
                           </h2>
