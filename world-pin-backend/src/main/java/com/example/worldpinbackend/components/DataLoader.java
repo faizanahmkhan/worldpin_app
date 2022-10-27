@@ -44,7 +44,7 @@ public class DataLoader implements ApplicationRunner {
 
 
         pinRepository.saveAll(Arrays.asList(pin1, pin2, pin3, pin4, pin5));
-        userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
+        userRepository.saveAll(Arrays.asList(user1, user2, user3, user4, user5));
 
     }
 
