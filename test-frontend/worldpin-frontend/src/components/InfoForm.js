@@ -72,8 +72,9 @@ return (
                             />
                             <button
                             onClick={uploadImage}
-                            
+                            className="login-btn"
                             >Add image</button>
+                            <br></br>
                             <label>Pin Description</label>
                             <br></br>
                             <input

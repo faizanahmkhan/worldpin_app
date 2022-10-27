@@ -50,13 +50,23 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
     libraries: ["places"],
   });
 
+  const existingPins = pins.map( (pin) => {
+    let latLng = pin.location.split(",")
+    return {
+      lat: parseFloat(latLng[0]),
+      lng: parseFloat(latLng[1]),
+      title: pin.description
+    }
+  })
+
   const onMapClick = useCallback((event) => {  //psuedo-code
     setMarkers((current) => [
       ...current,
       {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
-        // time: new Date(),
+        title: new Date()
+        
 
       },
     ]);
@@ -126,6 +136,32 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
           )
         )}
 
+{existingPins.map(
+          (
+            marker //we already have our useState,when we click a location in the map, we can see the lat and long generated in the console; but we need this markers.map method to create pins in these locations
+          ) => (
+            <>
+            <Marker //we want to show a marker component that comes with our googlemaps package (this is the little red pin we see whenever we click somewhere on googlemaps)
+              key={`${marker.lat}-${marker.lng}`} //as we're iterating, we add a key component so each clicked location is unique
+              position={{ lat: marker.lat, lng: marker.lng }} //let's show our pin at the specified clicked location, based on it's lat and long
+              
+
+              icon={{
+                //using icon we can override the original pin and add our own
+                url: `/icon.png`,
+                origin: new window.google.maps.Point(0, 0), //we set origin so when we click, pin appears EXACTLY where clicked
+                anchor: new window.google.maps.Point(15, 15), //we set anchor half the size, so middle of our pin icon is exactly where they clicked
+                scaledSize: new window.google.maps.Size(30, 30), //set size of icon
+              }}
+              onClick={() => {
+                  setSelected(marker);
+                }}
+            />
+            <InfoForm postPin={postPin} addPinToUser={addPinToUser} isPinPopped={isPinPopped} onlineUser={onlineUser} markers={markers}/>
+            </>
+          )
+        )}
+
             {selected ? (
                       <InfoWindow
                         position={{ lat: selected.lat, lng: selected.lng }}
@@ -138,9 +174,11 @@ const Maps = ({pins, users, postPin, addPinToUser, onlineUser}) => {
                             <span role="img" aria-label="island">
                               🏖
                             </span>{" "}
-                            Visited
+                            {selected.title.toString()}
+
                           </h2>
-                          <p> Added Pin {formatRelative(selected.time, new Date())}</p>
+                          {/* Want to add an Img tag here */}
+                          {/* <p> Added Pin {formatRelative(selected.time, new Date())}</p> */}
                         </div>
                       </InfoWindow>
                     ) : null}
