@@ -4,13 +4,13 @@ A unique photo sharing website for friends/family that allows you to not only vi
 
 Meet the team:
 
-Ben:
+Ben:[LinkedIn]([https://www.linkedin.com/in/ravihussein-patel/](https://www.linkedin.com/search/results/all/?heroEntityKey=urn%3Ali%3Afsd_profile%3AACoAADa8m34BgW6mg6y4gwdh85mNQqBd5_MEetE&keywords=ben%20de%20sousa&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=ac737493-ed90-47ba-b265-72f632a5d892&sid=4b6))
 
-Faizan:
+Faizan:[LinkedIn]([https://www.linkedin.com/in/ravihussein-patel/](https://www.linkedin.com/search/results/all/?heroEntityKey=urn%3Ali%3Afsd_profile%3AACoAADa8m34BgW6mg6y4gwdh85mNQqBd5_MEetE&keywords=ben%20de%20sousa&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=ac737493-ed90-47ba-b265-72f632a5d892&sid=4b6))
 
-Hasmeet:
+Hasmeet:[LinkedIn](https://www.linkedin.com/in/ravihussein-patel/]
 
-Kai:
+Kai:[LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
 
 Ravi: [LinkedIn](https://www.linkedin.com/in/ravihussein-patel/)
 
