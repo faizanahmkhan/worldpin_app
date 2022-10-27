@@ -45,6 +45,7 @@ Open up Postman to start the requests.
 ### Wireframe
 ![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/pic_wireframe.png)
 ### UML
+![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/capstone_dataflow.png)
 
 ![alt text](https://github.com/bendesousa/bnta_capstone_project/blob/main/UML.png)
 ### ERD
