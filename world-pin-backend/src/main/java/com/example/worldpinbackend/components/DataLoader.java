@@ -36,9 +36,9 @@ public class DataLoader implements ApplicationRunner {
 
         Pin pin1 = new Pin("Got lost on my way to Ibiza", new Date(1 - 10 - 2022), "51.517,-0.077", "https://firebasestorage.googleapis.com/v0/b/worldpin-f05bd.appspot.com/o/images%2FIMG_20221027_144631_3.jpg1fc3d4e4-868c-43ec-aafe-59ae361ca530?alt=media&token=814654ad-63fd-407b-bd09-df3bdef1515d", user1);
         Pin pin2 = new Pin("Dolphin Love", new Date(1 - 10 - 2022), "39.3999,8.2245", "https://firebasestorage.googleapis.com/v0/b/worldpin-f05bd.appspot.com/o/images%2FWhatsApp%20Image%202022-10-27%20at%2015.50.21.jpege0c49db8-a00f-4840-8bbd-7424c2e41fc5?alt=media&token=9b96be8f-7a44-48a6-ad5e-8d8fca7b46e5", user2);
-        Pin pin3 = new Pin("Faizan", new Date(1 - 10 - 2022), "50.938250,-10.201940", "https://firebasestorage.googleapis.com/v0/b/worldpin-f05bd.appspot.com/o/images%2FWhatsApp%20Image%202022-10-27%20at%2015.50.21.jpege0c49db8-a00f-4840-8bbd-7424c2e41fc5?alt=media&token=9b96be8f-7a44-48a6-ad5e-8d8fca7b46e5", user3);
+        Pin pin3 = new Pin("Spotting the GOAT, Eoan in Italy", new Date(1 - 10 - 2022), "42.350090,13.39957", "https://firebasestorage.googleapis.com/v0/b/worldpin-f05bd.appspot.com/o/images%2F20180331_171831.JPG7ff197db-0f66-41eb-8cfd-ded6dfe997c7?alt=media&token=bbae66ae-a6de-467b-b2cf-db2b5c8f11d8", user3);
         Pin pin4 = new Pin("Beer pong got competitive", new Date(1 - 10 - 2022), "55.938250,-3.201940", "https://firebasestorage.googleapis.com/v0/b/worldpin-f05bd.appspot.com/o/images%2FBeerPong.jpeg0884dec9-5afb-4939-83c5-62f3ebd07886?alt=media&token=9ae74314-48a4-4a30-a108-48d999700e69", user4);
-        Pin pin5 = new Pin("Slow animal drinking in Matobo national park", new Date(1 - 10 - 2022), "20.5572, 28.5125", "https://firebasestorage.googleapis.com/v0/b/worldpin-f05bd.appspot.com/o/images%2FIMG_1814.JPGc9ea46f1-834f-49a9-8053-1517e55a081b?alt=media&token=77c6d158-abd9-430a-8326-5fd1b45057ec", user5);
+        Pin pin5 = new Pin("Slow animal drinking in Matobo national park", new Date(1 - 10 - 2022), "-6.369028, 34.888821", "https://firebasestorage.googleapis.com/v0/b/worldpin-f05bd.appspot.com/o/images%2FIMG_1814.JPGc9ea46f1-834f-49a9-8053-1517e55a081b?alt=media&token=77c6d158-abd9-430a-8326-5fd1b45057ec", user5);
 
 
 
