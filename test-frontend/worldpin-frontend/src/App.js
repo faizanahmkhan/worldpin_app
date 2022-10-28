@@ -101,7 +101,7 @@ function App() {
       <NavBar loggedInUser={loggedInUser} logout={logout} onlineUser={onlineUser} postUser={postUser} handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} />
       <LoginForm onlineUser={onlineUser} isLogin={isLogin} isRegister={isRegister} postUser={postUser} loggedInUser={loggedInUser} />
       <Maps pins={pins} users={users} postPin={postPin} addPinToUser={addPinToUser} onlineUser={onlineUser}></Maps>
-      <UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins} />
+      {/* <UserContainer onlineUser={onlineUser} loggedInUser={loggedInUser} users={users} postUser={postUser} userPins={userPins} /> */}
     </>
   )
 }
